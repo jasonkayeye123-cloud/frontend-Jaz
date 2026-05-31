@@ -1,0 +1,650 @@
+/* RESET GÉNÉRAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Évite que les paddings déforment la taille de tes boîtes */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #1a1a1a; /* Un fond sombre moderne */
+    color: #ffffff;
+}
+
+a {
+    text-decoration: none; /* On enlève le soulignement des liens */
+    color: inherit;
+}
+
+ul {
+    list-style: none; /* On enlève les puces des listes */
+}
+
+/* LA BARRE DE NAVIGATION */
+.main-header {
+    background-color: #111111;
+    position: sticky; /* Reste figé en haut de l'écran au scroll */
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex; /* ICI COMMENCE LA MAGIE */
+    justify-content: space-between; /* Pousse le logo à gauche et les liens à droite */
+    align-items: center; /* Centre verticalement le logo et les liens */
+    
+    padding: 20px 5%; /* Donne de l'air en haut/bas (20px) et sur les côtés (5%) */
+}
+
+/* Le style du logo */
+.logo a {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.logo span {
+    color: #00adb5; /* Une touche de couleur tech style cyan */
+}
+
+/* ALIGNER LES LIENS DE NAV ENTRE EUX */
+.nav-links {
+    display: flex; /* On active aussi Flexbox sur la liste des liens */
+    gap: 30Px; /* Crée un espace de 30px entre chaque lien automatiquement ! */
+}
+
+.nav-links a {
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #00adb5; /* Le lien change de couleur quand on passe la souris dessus */
+}
+/* ==========================================================================
+   LES CONTENEURS GENERAUX
+   ========================================================================== */
+.container {
+    width: 90%;          /* Sur mobile, le contenu prend 90% de la largeur (5% de marge de chaque côté) */
+    max-width: 1100px;   /* Sur les grands écrans, le contenu s'arrête à 1100px de large, il ne va pas plus loin */
+    margin: 0 auto;      /* MAGIE : Centre automatiquement le conteneur au milieu de l'écran */
+}
+
+/* ==========================================================================
+   SECTION HERO
+   ========================================================================== */
+.hero {
+    min-height: calc(100vh - 74px); /* Fait en sorte que la section prenne toute la hauteur de l'écran restante */
+    display:flex;
+    align-items: center; /* Centre tout le contenu du Hero verticalement */
+    padding: 60px 0;
+}
+
+ 
+
+.hero-subtitle {
+    color: #00adb5;
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.hero-title {
+    font-size: 54px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 10px;
+}
+
+.hero-tagline {
+    font-size: 32px;
+    color: #eeeeee;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    color: #b3b3b3;
+    max-width: 600px; /* On limite la largeur du texte pour qu'il soit plus agréable à lire */
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+/* LES BOUTONS */
+.hero-buttons {
+    display: flex;
+    gap: 20px; /* Espace de 20px entre les deux boutons grâce à Flexbox */
+}
+
+.btn {
+    padding: 12px 28px;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: all 0.3s ease; /* Animation fluide sur toutes les propriétés au survol */
+}
+
+.btn-primary {
+    background-color: #00adb5;
+    color: #111111;
+}
+
+.btn-primary:hover {
+    background-color: #00cdff;
+    transform: translateY(-3px); /* Le bouton monte légèrement de 3px au survol */
+}
+
+.btn-secondary {
+    border: 2px solid #00adb5;
+    color: #00adb5;
+}
+
+.btn-secondary:hover {
+    background-color: #00adb5;
+    color: #111111;
+    transform: translateY(-3px);
+}
+/* ==========================================================================
+   SECTION SERVICES
+   ========================================================================== */
+.services-section {
+    padding: 100px 0;
+    background-color: #1f1f1f; /* Un fond légèrement différent pour casser la monotonie */
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    position: relative;
+    display:inline-block;
+}
+
+/* Petite ligne decorative sous le titre */
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background-color: #00adb5;
+}
+
+.section-header p {
+    color: #b3b3b3;
+    font-size: 16px;
+}
+
+/* ⚡ LA MAGIE DE CSS GRID ICI ⚡ */
+.services-grid {
+    display: grid; /* On active le mode Grille */
+    
+    /* On définit 3 colonnes égales de manière moderne et automatique */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    
+    gap: 30px; /* Espace de 30px entre les cartes (horizontalement et verticalement) */
+}
+
+/* LE STYLE DES CARTES */
+.service-card {
+    background-color: #1a1a1a;
+    padding: 40px 30px;
+    border-radius: 8px;
+    border: 1px solid #2a2a2a;
+    transition: all 0.3s ease;
+}
+
+.service-icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.service-card p {
+    color: #b3b3b3;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Effet au survol des cartes */
+.service-card:hover {
+    border-color: #00adb5;          /* La bordure devient cyan */
+    transform: translateY(-5px);    /* La carte monte un peu */
+    box-shadow: 0 10px 20px rgba(0, 173, 181, 0.1); /* Petite lueur subtile */
+}
+/* ==========================================================================
+   SECTION CONTACT
+   ========================================================================== */
+.contact-section {
+    padding: 100px 0;
+    background-color: #1a1a1a; /* On revient sur le fond de base */
+}
+
+.contact-wrapper {
+    max-width: 600px; /* On limite la largeur du formulaire pour qu'il ne soit pas trop étiré */
+    margin: 0 auto;   /* On le centre horizontalement */
+    background-color: #1f1f1f; /* Fond légèrement plus clair que la section */
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid #2a2a2a;
+}
+
+/* ESPACEMENT DES BLOCS */
+.form-group {
+    display: flex;
+    flex-direction: column; /* MAGIE : Aligne le label au-dessus de l'input */
+    margin-bottom: 25px;    /* Espace entre chaque bloc du formulaire */
+}
+
+/* STYLE DES LABELS */
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #00adb5;        /* Notre couleur cyan */
+    margin-bottom: 8px;    /* Petit espace sous le texte avant le champ */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* STYLE DES INPUTS ET TEXTAREA */
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    background-color: #1a1a1a;
+    border: 1px solid #3a3a3a;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 16px;
+    outline: none;         /* Enlève la bordure bleue moche par défaut des navigateurs */
+    transition: border-color 0.3s ease;
+}
+
+/* Gérer la hauteur du textarea pour qu'on puisse taper un long texte */
+.form-group textarea {
+    resize: vertical; /* L'utilisateur peut l'agrandir uniquement vers le bas */
+}
+
+/* 🎯 L'EFFET FOCUS : Quand l'utilisateur clique dans un champ */
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #00adb5; /* La bordure devient cyan quand on tape dedans */
+}
+
+/* STYLE DU BOUTON SOUCHETÉ */
+.btn-submit {
+    width: 100%; /* Le bouton prend toute la largeur du formulaire */
+    background-color: #00adb5;
+    color: #111111;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-submit:hover {
+    background-color: #00cdff;
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   DESIGN RESPONSIVE (MOBILE & TABLETTE)
+   ========================================================================== */
+@media (max-width: 768px) {
+    
+    /* 1. On change la disposition de la navbar */
+    .navbar {
+        flex-direction: column; /* On empile le logo et les liens verticalement */
+        gap: 15px;              /* On met un petit espace entre le logo et le menu */
+        padding: 15px 2%;
+    }
+
+    /* 2. On ajuste la liste des liens */
+    .nav-links {
+        gap: 15px;             /* On resserre l'espace entre les liens */
+        justify-content: center;
+        width: 100%;
+    }
+
+    .nav-links a {
+        font-size: 15px;       /* On diminue légèrement la taille du texte */
+    }
+
+    /* 3. On ajuste le Hero pour mobile */
+    .hero-title {
+        font-size: 38px;       /* Évite que ton nom déborde de l'écran */
+    }
+    
+    .hero-tagline {
+        font-size: 22px;       /* On adapte le sous-titre */
+    }
+
+    .hero-buttons {
+        flex-direction: column; /* Sur téléphone, les boutons s'empilent verticalement */
+        width: 100%;
+    }
+
+    .btn {
+        text-align: center;    /* On centre le texte dans les boutons */
+        width: 100%;           /* Les boutons prennent toute la largeur sur mobile */
+    }
+    
+    /* 4. On adapte le formulaire */
+    .contact-wrapper {
+        padding: 20px;         /* Moins de marge interne pour gagner de la place */
+
+    }
+    /* Ajustement du footer pour mobile */
+    .footer-content {
+        flex-direction: column; /* Empile le copyright et les réseaux */
+        gap: 15px;              /* Ajoute de l'espace entre les deux */
+        text-align: center;
+    }
+}
+
+/* ==========================================================================
+   STYLE DU BOUTON THÈME
+   ========================================================================== */
+.theme-btn {
+    background: none;
+    border: 2px solid #00adb5;
+    color: #00adb5;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+.theme-btn:hover {
+    background-color: #00adb5;
+    color: #111111;
+}
+
+/* ==========================================================================
+   LE MODE CLAIR (LIGHT THEME)
+   ========================================================================== */
+/* Quand la classe .light-theme est posée sur le body, ces règles s'activent */
+body.light-theme {
+    background-color: #f5f5f5; /* Fond gris très clair */
+    color: #222222;            /* Texte foncé */
+}
+
+body.light-theme .main-header {
+    background-color: #ffffff; /* Navbar blanche */
+    border-bottom: 1px solid #dddddd;
+}
+
+body.light-theme .hero-tagline {
+    color: #444444;
+}
+
+body.light-theme .services-section {
+    background-color: #e9e9e9; /* Section services légèrement plus grise */
+}
+
+body.light-theme .service-card {
+    background-color: #ffffff; /* Cartes blanches */
+    border: 1px solid #dddddd;
+}
+
+body.light-theme .service-card h3 {
+    color: #222222;
+}
+
+body.light-theme .contact-wrapper {
+    background-color: #ffffff; /* Formulaire fond blanc */
+    border: 1px solid #dddddd;
+}
+
+body.light-theme .form-group input,
+body.light-theme .form-group textarea {
+    background-color: #f9f9f9;
+    border: 1px solid #cccccc;
+    color: #222222;
+
+/* ==========================================================================
+   SCÉNARIO DE L'ANIMATION (KEYFRAMES)
+   ========================================================================== */
+@keyframes fondEtMontee {
+    /* 0% : C'est l'état de départ au tout début de l'animation */
+    0% {
+        opacity: 0;                /* Complètement invisible */
+        transform: translateY(30px); /* Décalé de 30px vers le bas */
+    }
+    
+    /* 100% : C'est l'état final quand l'animation est terminée */
+    100% {
+        opacity: 1;                /* Complètement visible */
+        transform: translateY(0);    /* Reprend sa place normale */
+    }
+}
+
+
+
+
+}
+/* ==========================================================================
+   SCÉNARIO DE L'ANIMATION (KEYFRAMES)
+   ========================================================================== */
+@keyframes fondEtMontee {
+    /* 0% : C'est l'état de départ au tout début de l'animation */
+    0% {
+        opacity: 0;                /* Complètement invisible */
+        transform: translateY(30px); /* Décalé de 30px vers le bas */
+    }
+    
+    /* 100% : C'est l'état final quand l'animation est terminée */
+    100% {
+        opacity: 1;                /* Complètement visible */
+        transform: translateY(0);    /* Reprend sa place normale */
+    }
+}
+
+/* ==========================================================================
+   APPLICATION DES ANIMATIONS
+   ========================================================================== */
+
+/* On applique l'animation sur les blocs du Hero */
+.hero-subtitle {
+    animation: fondEtMontee 0.8s ease forwards;
+}
+
+.hero-title {
+    animation: fondEtMontee 0.8s ease forwards;
+    animation-delay: 0.2s; /* Attend 0.2 seconde avant de démarrer */
+}
+
+.hero-tagline {
+    animation: fondEtMontee 0.8s ease forwards;
+    animation-delay: 0.4s; /* Attend 0.4 seconde */
+}
+
+.hero-description {
+    animation: fondEtMontee 0.8s ease forwards;
+    animation-delay: 0.6s; /* Attend 0.6 seconde */
+}
+
+.hero-buttons {
+    animation: fondEtMontee 0.8s ease forwards;
+    animation-delay: 0.8s; /* Attend 0.8 seconde */
+}
+/* ==========================================================================
+   FOOTER (PIED DE PAGE)
+   ========================================================================== */
+.main-footer {
+    background-color: #111111; /* Même fond sombre que la navbar du haut */
+    padding: 30px 0;
+    border-top: 1px solid #2a2a2a; /* Une petite ligne subtile pour séparer du contact */
+    color: #b3b3b3;
+    font-size: 14px;
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Pour le Dark/Light mode */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between; /* Pousse le copyright à gauche et les réseaux à droite */
+    align-items: center;            /* Aligne les deux blocs parfaitement sur la même ligne verticale */
+}
+
+.footer-socials {
+    display: flex;
+    gap: 20px; /* Espace de 20px entre chaque lien de réseau social */
+}
+
+.footer-socials a {
+    transition: color 0.3s ease;
+}
+
+.footer-socials a:hover {
+    color: #00adb5; /* Le lien devient cyan au survol */
+}
+
+/* ☀️ AJUSTEMENT POUR LE MODE CLAIR (LIGHT THEME) */
+body.light-theme .main-footer {
+    background-color: #ffffff;
+    border-top: 1px solid #dddddd;
+    color: #666666;
+}
+
+/* ==========================================================================
+   SECTION PROJETS (PORTFOLIO)
+   ========================================================================== */
+.portfolio-section {
+    padding: 100px 0;
+    background-color: #1a1a1a;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+}
+
+.project-card {
+    background-color: #1f1f1f;
+    border-radius: 12px;
+    overflow: hidden; /* Crucial : force l'image à respecter les arrondis de la carte */
+    border: 1px solid #2a2a2a;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* Effet d'affichage de la carte */
+.project-card:hover {
+    transform: translateY(-10px);
+    border-color: #00adb5;
+}
+
+/* Gestion de l'image */
+.project-image {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Recadre l'image proprement sans la déformer */
+    transition: transform 0.5s ease;
+}
+
+/* Zoom ultra-stylé sur l'image quand on survole la carte */
+.project-card:hover .project-image img {
+    transform: scale(1.1);
+}
+
+/* Contenu textuel sous l'image */
+.project-info {
+    padding: 25px;
+}
+
+.project-category {
+    color: #00adb5;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.project-info h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.project-info p {
+    color: #b3b3b3;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Les petits badges de technologies */
+.project-tags {
+    display: flex;
+    flex-wrap: wrap; /* Permet aux tags de passer à la ligne s'ils manquent de place */
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.project-tags span {
+    background-color: #111111;
+    color: #eeeeee;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid #2a2a2a;
+}
+
+.project-link {
+    color: #00adb5;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: padding-left 0.3s ease;
+}
+
+/* Petite animation sur la flèche au survol */
+.project-link:hover {
+    padding-left: 8px;
+    color: #00cdff;
+}
+
+/* ☀️ INTEGRATION MODE CLAIR */
+body.light-theme .project-card {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+}
+body.light-theme .project-info h3 {
+    color: #222222;
+}
+body.light-theme .project-tags span {
+    background-color: #f0f0f0;
+    color: #333333;
+    border: 1px solid #dddddd;
+}
+
+.footer-socials a {
+    color: #b3b3b3;
+    font-size: 20px; /* On grossit les icônes à 20px */
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+}
+
+.footer-socials a:hover {
+    color: #00adb5;   /* Devient cyan au survol */
+    transform: translateY(-3px); /* La petite icône monte de 3px au survol, super interactif ! */
+}
