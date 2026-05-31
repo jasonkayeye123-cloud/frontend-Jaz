@@ -1,44 +1,56 @@
-const form = document.querySelector('form'); // Remplace par l'id de ton formulaire si besoin
-const responseMessage = document.getElementById('form-response');
+// On attend que la page soit complètement chargée
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Sélection du formulaire (assure-toi que ton <form> dans le HTML a id="contact-form")
+    const form = document.getElementById('contact-form');
 
-form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+    if (!form) {
+        console.error("Erreur : Le formulaire avec l'ID 'contact-form' est introuvable dans le HTML.");
+        return;
+    }
 
-    // 1. On récupère les valeurs des champs
-    const nom = document.getElementById('nom').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
+    // 2. Écoute de l'événement de soumission
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Empêche la page de se recharger
 
-    try {
-        // 2. Envoi des données au serveur local
-        const response = await fetch('https://portfolio-backend-9e0e.onrender.com/contact', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ nom, email, message })
-});
+        // 3. Récupération des éléments HTML
+        const inputNom = document.getElementById('nom');
+        const inputEmail = document.getElementById('email');
+        const inputMessage = document.getElementById('message');
 
-        const result = await response.json();
-
-        // 3. On affiche le résultat de manière stylée à l'écran
-        responseMessage.style.display = "block"; // On affiche le paragraphe
-
-        if (response.ok) {
-            // Succès ! Texte vert
-            responseMessage.style.color = "#22c55e"; 
-            responseMessage.textContent = "🚀 Génial ! Ton message a été envoyé avec succès, bro !";
-            form.reset(); // Supprime les textes saisis dans les cases pour vider le formulaire
-        } else {
-            // Erreur renvoyée par le serveur. Texte rouge
-            responseMessage.style.color = "#ef4444";
-            responseMessage.textContent = result.error || "Oups, une erreur est survenue.";
+        // Double vérification de la présence des champs pour éviter l'erreur 'null'
+        if (!inputNom || !inputEmail || !inputMessage) {
+            alert("Erreur : Un ou plusieurs champs du formulaire (nom, email ou message) sont introuvables dans le HTML.");
+            return;
         }
 
-    } catch (error) {
-        // Erreur réseau (ex: serveur éteint). Texte rouge
-        responseMessage.style.display = "block";
-        responseMessage.style.color = "#ef4444";
-        responseMessage.textContent = "❌ Impossible de joindre le serveur. Vérifie s'il est bien allumé !";
-    }
+        // Extraction des valeurs
+        const data = {
+            nom: inputNom.value.trim(),
+            email: inputEmail.value.trim(),
+            message: inputMessage.value.trim()
+        };
+
+        // 4. Envoi des données au serveur Render
+        try {
+            const response = await fetch('https://portfolio-backend-9e0e.onrender.com/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                alert("Message envoyé avec succès !");
+                form.reset(); // Vide les champs du formulaire après succès
+            } else {
+                const errorData = await response.json().catch(() => ({}));
+                alert(`Erreur lors de l'envoi : ${errorData.message || response.statusText}`);
+            }
+
+        } catch (error) {
+            console.error("Erreur réseau :", error);
+            alert("Impossible de contacter le serveur. Vérifie ta connexion internet.");
+        }
+    });
 });
